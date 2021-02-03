@@ -7,7 +7,8 @@ class SearchResultContainer extends Component {
  
   state = {
     search: "",
-    employees: []
+    employees: [],
+    filteredEmployees: []
   };
 
   // search = query => {
@@ -15,26 +16,26 @@ class SearchResultContainer extends Component {
   //     .then(res => this.setState({ results: res.data.data }))
   //     .catch(err => console.log(err));
   // };
-  sortByName(){
-    const sortedEmployees = this.employees.sort((a, b) => (a.name.last> b.name.last) ? 
-    1 : (a.name.last === a.name.last) ? ((a.name.first > b.name.first) ? 1:-1) : -1)
-    console.log(sortedEmployees)
-  }
-  
- compareEmployee(a, b) {
-   const aLast = a.name.last.toLowerCase();
-   const bLast = b.name.last.toLowerCase();
+//   sortByName(){
+//     const sortedEmployees = this.employees.sort((a, b) => (a.name.last> b.name.last) ? 
+//     1 : (a.name.last === a.name.last) ? ((a.name.first > b.name.first) ? 1:-1) : -1)
+//     console.log(sortedEmployees)
+//   }
 
-   let comparison = 0;
-   if (aLast > bLast) {
-     comparison = 1;
-   } else if (aLast < bLast) {
-     comparison = -1;
-   }
-   return comparison
- }
+//  compareEmployee(a, b) {
+//    const aLast = a.name.last.toLowerCase();
+//    const bLast = b.name.last.toLowerCase();
 
- sortedEmployeeList = this.state.employees.sort(this.compareEmployee)
+//    let comparison = 0;
+//    if (aLast > bLast) {
+//      comparison = 1;
+//    } else if (aLast < bLast) {
+//      comparison = -1;
+//    }
+//    return comparison
+//  }
+
+//  sortedEmployeeList = this.state.employees.sort(this.compareEmployee)
 
   componentDidMount(){
     console.log("componentAbout to mount")
@@ -48,11 +49,13 @@ class SearchResultContainer extends Component {
   }
   
   handleInputChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState({
-      [name]: value
-    });
+   const value = event.target.value;
+   const employeeArr = this.state.employees;
+  
+   const searchedEmployeeList = employeeArr.filter((eName) => eName.name.first.toLowerCase().indexOf(value.toLowerCase()) !== -1 || eName.name.last.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+   this.setState({
+     filteredResults: searchedEmployeeList,
+   });
   };
   
 
