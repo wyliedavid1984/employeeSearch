@@ -1,15 +1,20 @@
 import React from 'react'
 
-function EmployeeCard(props) {
+function EmployeeCard({employees}) {
+  console.log(employees)
   return (
-    <ul className="list-group">
-      {props.results.map(result => (
-        <li className="list-group-item" key={result.id}>
-          <img alt={result.name} className="img-fluid" src={result.picture.thumbnail} />
-          <span>{result.name}</span><span>{result.phone}</span><span>{result.email}</span><span>{result.dob}</span>
-        </li>
-      ))}
-    </ul>
+    <div>
+      {employees.map((employee) => {
+        console.log(employee)
+        return (
+          <tr className="list-group-item" key={employee.id.value}>
+          <td><img alt={employee.name} className="img-fluid" src={employee.picture.thumbnail} /></td>
+          <td>{employee.name.first} {employee.name.last}</td><td>{employee.location.state}</td><td>{employee.phone}</td><td>{employee.email}</td><td>{employee.dob}</td>
+         </tr>
+        )
+      })}
+          
+    </div>
   );
 }
 

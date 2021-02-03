@@ -13,13 +13,16 @@ const styles = {
   
 }
 
-function SearchForm(props) {
+function SearchForm({handleInputChange, search}) {
   return (
     <form>
       <div className="form-group">
         <input
-          onChange={props.handleInputChange}
-          value={props.search}
+          onChange={(e)=>{
+            e.preventDefault();
+            handleInputChange(e);
+          }}
+          value={search}
           name="search"
           type="text"
           className="form-control"
@@ -27,9 +30,6 @@ function SearchForm(props) {
           placeholder="Search the DataBase"
           id="search"
         />
-        <button onClick={props.handleFormSubmit} className="btn btn-primary mt-3" style={styles.searchButton}>
-          Search
-        </button>
       </div>
     </form>
   );

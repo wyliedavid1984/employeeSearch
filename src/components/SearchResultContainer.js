@@ -1,20 +1,31 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
-import ResultList from "./EmployeeCard";
+import EmployeeCard from "./EmployeeCard";
 import API from "../utils/API";
 
 class SearchResultContainer extends Component {
-  state = {
+  constructor(props){
+  super(props);
+  this.state = {
     search: "",
-    results: []
+    employees: [{}]
   };
+}
+  // search = query => {
+  //   API.search(query)
+  //     .then(res => this.setState({ results: res.data.data }))
+  //     .catch(err => console.log(err));
+  // };
+  componentDidMount(){
+    API.getEmployee().then(results =>{
+      console.log(results.data)
+      this.setState({
+        employees: results.data.results
+      })
+    })
 
-  search = query => {
-    API.search(query)
-      .then(res => this.setState({ results: res.data.data }))
-      .catch(err => console.log(err));
-  };
-
+  }
+  
   handleInputChange = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -23,21 +34,28 @@ class SearchResultContainer extends Component {
     });
   };
 
-  // When the form is submitted
-  handleFormSubmit = event => {
-    event.preventDefault();
-    this.search(this.state.search);
-  };
 
   render() {
     return (
       <div>
         <SearchForm
-          search={this.state.search}
-          handleFormSubmit={this.handleFormSubmit}
+          search={this.search}
           handleInputChange={this.handleInputChange}
         />
-        <ResultList results={this.state.results} />
+        <table className = "table-body" >
+          <thead>
+            <tr>
+            <th><button>Photo</button></th>
+            <th><button>Name</button></th>
+            <th><button>State</button></th>
+            <th><button>Phone Number</button></th>
+            <th><button>DOB</button></th>
+            </tr>
+          </thead>
+          <tbody>
+            <EmployeeCard employees={this.state.employees} />
+          </tbody>
+        </table>
       </div>
     );
   }
