@@ -2,7 +2,6 @@ import React from "react";
 
 const styles = {
   input:{
-    maxWidth: "30%",
     display: "flex",
     justifyContent: "center",
   },
@@ -15,8 +14,8 @@ const styles = {
 
 function SearchForm({handleInputChange, search}) {
   return (
-    <form>
-      <div className="form-group">
+    <form className="container">
+      <div className="form-group text-center">
         <input
           onChange={(e)=>{
             e.preventDefault();

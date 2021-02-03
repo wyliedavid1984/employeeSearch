@@ -3,6 +3,7 @@ import SearchForm from "./SearchForm";
 import EmployeeCard from "./EmployeeCard";
 import API from "../utils/API";
 import TableHead from "./TableHead"
+
 class SearchResultContainer extends Component {
  
   state = {
@@ -15,14 +16,20 @@ class SearchResultContainer extends Component {
   //     .then(res => this.setState({ results: res.data.data }))
   //     .catch(err => console.log(err));
   // };
-  sortByName(){
-   console.log(this.state)
-    const sortedEmployees = this.state.employees.sort((a, b) => (a.name.last> b.name.last) ? 
-    1 : (a.name.last === a.name.last) ?
-     ((a.name.first > b.name.first) ?
-      1:-1) : -1)
-    console.log(sortedEmployees)
+  compareEmployee (a, b) {
+    const aLast = a.name.last.toLowerCase();
+    const bLast = b.name.last.toLowerCase();
+
+    let comparison =0;
+    if(aLast>bLast){
+      comparison = 1;
+    }else if(aLast<bLast){
+      comparison = -1;
+    }
+    return comparison
   }
+  
+  const sortedEmployeeList = this.state.employees.sort(this.compareEmployee)
 
   componentDidMount(){
     console.log("componentAbout to mount")
