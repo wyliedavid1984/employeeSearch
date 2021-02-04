@@ -55,21 +55,24 @@ class SearchResultContainer extends Component {
   };
 
   handleInputChange = event => {
+    event.preventDefault();
     const value = event.target.value;
-    const users = this.state.employees.filter(employee => employee.name.first.toLowercase().indexOf(value.toLowercase()) >= 0 || employee.name.last.toLowercase().indexOf(value.toLowercase()) >= 0);
+    console.log(value)
+    // const users = this.state.employees.filter(employee => employee.toLowerCase() === value.toLowerCase())
+    const users = this.state.employees.filter(employee => employee.name.first.toLowercase() === (value.toLowercase()) || employee.name.last.toLowercase()=== (value.toLowercase()));
     this.setState({
       filteredEmployees: users
     });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    const search = this.state.search;
-    const searchedEmployees = this.state.employees.filter(employee => (employee.name.first.includes(search)));
-    this.setState({
-      filteredEmployees: searchedEmployees
-    });
-  };
+  // handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   const search = this.state.search;
+  //   const searchedEmployees = this.state.employees.filter(employee => (employee.name.first.includes(search)));
+  //   this.setState({
+  //     filteredEmployees: searchedEmployees
+  //   });
+  // };
 
   render() {
     return (

@@ -1,7 +1,7 @@
 import React from "react";
 
 const styles = {
-  input:{
+  inputDiv:{
     display: "flex",
     justifyContent: "center",
   },
@@ -15,20 +15,19 @@ const styles = {
 function SearchForm({handleInputChange, search, handleFormSubmit}) {
   return (
     <form className="container">
-      <div className="form-group text-center">
+      <div className="form-group text-center" style={styles.inputDiv}>
         <input
           onChange={handleInputChange}
           value={search}
           name="search"
           type="text"
-          className="form-input"
-          style={styles.input}
+          className="form-input input"
           placeholder="Search the DataBase"
           id="search"
         />
-        <button onClick={handleFormSubmit} className="btn btn-primary">
+        {/* <button onClick={handleFormSubmit} className="btn btn-primary">
           Search
-        </button>
+        </button> */}
       </div>
     </form>
   );
