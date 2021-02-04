@@ -11,53 +11,65 @@ class SearchResultContainer extends Component {
     filteredEmployees: []
   };
 
-  // search = query => {
-  //   API.search(query)
-  //     .then(res => this.setState({ results: res.data.data }))
-  //     .catch(err => console.log(err));
-  // };
 //   sortByName(){
 //     const sortedEmployees = this.employees.sort((a, b) => (a.name.last> b.name.last) ? 
 //     1 : (a.name.last === a.name.last) ? ((a.name.first > b.name.first) ? 1:-1) : -1)
 //     console.log(sortedEmployees)
 //   }
 
-//  compareEmployee(a, b) {
-//    const aLast = a.name.last.toLowerCase();
-//    const bLast = b.name.last.toLowerCase();
+ compareEmployee(a, b) {
+   const aLast = a.name.last.toLowerCase();
+   const bLast = b.name.last.toLowerCase();
 
-//    let comparison = 0;
-//    if (aLast > bLast) {
-//      comparison = 1;
-//    } else if (aLast < bLast) {
-//      comparison = -1;
-//    }
-//    return comparison
-//  }
+   let comparison = 0;
+   if (aLast > bLast) {
+     comparison = 1;
+   } else if (aLast < bLast) {
+     comparison = -1;
+   }
+   return comparison
+ }
 
-//  sortedEmployeeList = this.state.employees.sort(this.compareEmployee)
-
+ sortByName(){
+   const sortedEmployeeList = this.state.employees.sort(this.compareEmployee)
+   return sortedEmployeeList;
+ }
+ 
   componentDidMount(){
-    console.log("componentAbout to mount")
-    API.getEmployee().then(results =>{
-       console.log(results.data.results[0].name)
-      this.setState({
-        employees: results.data.results
+    API.getEmployee()
+      .then(results =>{
+        this.setState({
+          employees: results.data.results,
+          filteredEmployees: results.data.results
+        })
       })
-    })
-
+      .catch(err => console.log(err))
   }
   
-  handleInputChange = event => {
-   const value = event.target.value;
-   const employeeArr = this.state.employees;
-  
-   const searchedEmployeeList = employeeArr.filter((eName) => eName.name.first.toLowerCase().indexOf(value.toLowerCase()) !== -1 || eName.name.last.toLowerCase().indexOf(value.toLowerCase()) !== -1);
-   this.setState({
-     filteredResults: searchedEmployeeList,
-   });
+  searchEmployee = query => {
+    API.getEmployee(query)
+      .then(res => this.setState({
+        searchEmp: res.data.results
+      }))
+      .catch(err => console.log(err));
   };
-  
+
+  handleInputChange = event => {
+    const value = event.target.value;
+    const users = this.state.employees.filter(employee => employee.name.first.toLowercase().indexOf(value.toLowercase()) >= 0 || employee.name.last.toLowercase().indexOf(value.toLowercase()) >= 0);
+    this.setState({
+      filteredEmployees: users
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    const search = this.state.search;
+    const searchedEmployees = this.state.employees.filter(employee => (employee.name.first.includes(search)));
+    this.setState({
+      filteredEmployees: searchedEmployees
+    });
+  };
 
   render() {
     return (
@@ -65,22 +77,29 @@ class SearchResultContainer extends Component {
         <SearchForm
           search={this.state.search}
           handleInputChange={this.handleInputChange}
-        />
+          handleFormSubmit={this.handleFormSubmit}
+        /> 
+        {this.state.employees ?(
         <table className = "table" >
           <TableHead 
           sortByName={this.sortByName}
           />
-          {this.state.employees.name ?(
-           <tbody> 
+          <tbody> 
             <EmployeeCard 
+            search={this.state.search}
+            handleInputChange = {
+              this.handleInputChange
+            }
             value={this.state.value}
-            employees={this.state.employees} />
-            </tbody>
-           
-          ):(
+            employees={this.state.employees}
+            filteredEmployees={this.state.filteredEmployees}
+            />
+          </tbody> 
+        </table>
+           ):(
             <h1>No Matching Employees</h1>
-          )}
-         </table>
+          )} 
+        
       </div>
     );
   }

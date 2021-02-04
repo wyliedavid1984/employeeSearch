@@ -12,23 +12,23 @@ const styles = {
   
 }
 
-function SearchForm({handleInputChange, search}) {
+function SearchForm({handleInputChange, search, handleFormSubmit}) {
   return (
     <form className="container">
       <div className="form-group text-center">
         <input
-          onChange={(e)=>{
-            e.preventDefault();
-            handleInputChange(e);
-          }}
+          onChange={handleInputChange}
           value={search}
           name="search"
           type="text"
-          className="form-control"
+          className="form-input"
           style={styles.input}
           placeholder="Search the DataBase"
           id="search"
         />
+        <button onClick={handleFormSubmit} className="btn btn-primary">
+          Search
+        </button>
       </div>
     </form>
   );
