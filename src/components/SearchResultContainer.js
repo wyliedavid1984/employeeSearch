@@ -8,32 +8,34 @@ class SearchResultContainer extends Component {
   state = {
     search: "",
     employees: [],
-    filteredEmployees: []
+    filteredEmployees: [],
   };
 
-//   sortByName(){
-//     const sortedEmployees = this.employees.sort((a, b) => (a.name.last> b.name.last) ? 
-//     1 : (a.name.last === a.name.last) ? ((a.name.first > b.name.first) ? 1:-1) : -1)
-//     console.log(sortedEmployees)
-//   }
+  sortByNameAsc(){
+    const sortedEmployees = this.state.employees.sort((a, b) => (a.name.last> b.name.last) ? 
+    1 : (a.name.last === b.name.last) ? ((a.name.first > b.name.first) ? 1:-1) : -1)
+    console.log(sortedEmployees)
+  }
 
- compareEmployee(a, b) {
-   const aLast = a.name.last.toLowerCase();
-   const bLast = b.name.last.toLowerCase();
+//  compareEmployee(a, b) {
+//    const aLast = a.name.last.toLowerCase();
+//    const bLast = b.name.last.toLowerCase();
 
-   let comparison = 0;
-   if (aLast > bLast) {
-     comparison = 1;
-   } else if (aLast < bLast) {
-     comparison = -1;
-   }
-   return comparison
- }
+//    let comparison = 0;
+//    if (aLast > bLast) {
+//      comparison = 1;
+//    } else if (aLast < bLast) {
+//      comparison = -1;
+//    }
+//    return comparison
+//  }
 
- sortByName(){
-   const sortedEmployeeList = this.state.employees.sort(this.compareEmployee)
-   return sortedEmployeeList;
- }
+//  sortByName(){
+//    console.log(this.state.employees)
+//    let sortedEmployeeList = this.state.employees.sort(this.compareEmployee)
+//    console.log(sortedEmployeeList)
+//    return sortedEmployeeList;
+//  }
  
   componentDidMount(){
     API.getEmployee()
@@ -45,23 +47,15 @@ class SearchResultContainer extends Component {
       })
       .catch(err => console.log(err))
   }
-  
-  searchEmployee = query => {
-    API.getEmployee(query)
-      .then(res => this.setState({
-        searchEmp: res.data.results
-      }))
-      .catch(err => console.log(err));
-  };
 
   handleInputChange = event => {
     event.preventDefault();
     const value = event.target.value;
-    console.log(value)
-    // const users = this.state.employees.filter(employee => employee.toLowerCase() === value.toLowerCase())
-    const users = this.state.employees.filter(employee => employee.name.first.toLowercase() === (value.toLowercase()) || employee.name.last.toLowercase()=== (value.toLowercase()));
+    const users = this.state.employees.filter(employee => employee.name.first.toLowerCase().includes(value.toLowerCase()) || employee.name.last.toLowerCase().includes(value.toLowerCase()));
     this.setState({
-      filteredEmployees: users
+      ...this.state,
+      filteredEmployees: users,
+      search: value
     });
   };
 
@@ -85,7 +79,7 @@ class SearchResultContainer extends Component {
         {this.state.employees ?(
         <table className = "table" >
           <TableHead 
-          sortByName={this.sortByName}
+          sortByNameAsc={this.sortByNameAsc}
           />
           <tbody> 
             <EmployeeCard 

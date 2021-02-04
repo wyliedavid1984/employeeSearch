@@ -22,7 +22,7 @@ function SearchForm({handleInputChange, search, handleFormSubmit}) {
           name="search"
           type="text"
           className="form-input input"
-          placeholder="Search the DataBase"
+          placeholder="Search by Name"
           id="search"
         />
         {/* <button onClick={handleFormSubmit} className="btn btn-primary">
