@@ -25,7 +25,7 @@ const Header = () => {
         <section className="App-header">
             <section className="jumbotron" style={styles.jumbot} >
                 <h1 style={styles.h1}> Employee Search Engine </h1> 
-                <p style={styles.p}>Click on carrots to filter by heading or use the search box to narrow your results.</p> 
+                <p style={styles.p}>Click on table headings to filter by Last name and by DOB, or use the search box to narrow your results.</p> 
             </section>
             <hr style={styles.hr} />
         </section>

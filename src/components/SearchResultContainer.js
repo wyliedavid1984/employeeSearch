@@ -13,35 +13,40 @@ class SearchResultContainer extends Component {
     toggleCity: false,
     sortedYoungest: false
   };
-
+// Used ternary here instead of if else. To sort names 
   sortByName = () =>{
-    if(!this.state.toggleName){
-      const sortedEmployees = this.state.employees.sort((a, b) => 
-      (a.name.last> b.name.last) ? 1 :
-      (a.name.last === b.name.last) ? ((a.name.first > b.name.first) ? 1:-1) : -1)
-      this.setState({
-        ...this.state,
-        filteredEmployees: sortedEmployees,
-        toggleName: true 
-    })
-  } else{
-      const sortedEmployees = this.state.employees.sort((a, b) => 
-      (a.name.last > b.name.last) ? 1 :
-      (a.name.last === b.name.last) ? ((a.name.first < b.name.first) ? 1:-1) : -1)
-      this.setState({
-        ...this.state,
-        filteredEmployees: sortedEmployees,
-        toggleName: false 
-      })
-    }
-
+    this.state.toggleName ? this.namesAsc():this.nameDesc()
   }
-
+// sorts from a to z with employee last names
+  namesAsc=()=>{
+    console.log("Ascending")
+    const sortedEmployees = this.state.employees.sort((a, b) =>
+      (a.name.last < b.name.last) ? 1 :
+      (a.name.last === b.name.last) ? ((a.name.first < b.name.first) ? 1 : -1) : -1)
+    this.setState({
+      ...this.state,
+      filteredEmployees: sortedEmployees,
+      toggleName: false
+    })
+  }
+// sorts from z to a with employee last names
+  nameDesc =()=>{
+    console.log("Descending")
+     const sortedEmployees = this.state.employees.sort((a, b) => 
+        (a.name.last > b.name.last) ? 1 :
+        (a.name.last === b.name.last) ? ((a.name.first > b.name.first) ? 1:-1) : -1)
+        this.setState({
+          ...this.state,
+          filteredEmployees: sortedEmployees,
+          toggleName: true 
+        })
+  }
+// sorts cities, it does sort. However, I'm not certain what the sorting is.
   sortByCity = () => {
     if (!this.state.toggleCity) {
       const sortedEmployees = this.state.employees.sort((a, b) =>
-        (a.location.city > b.location.city) ? 1 :
-        (a.location.city === b.location.city) ? ((a.location.state > b.location.state) ? 1 : -1) : -1)
+        (a.location.state < b.location.state) ? 1 :
+        (a.location.state === b.location.state) ? ((a.location.city < b.location.city) ? 1 : -1) : -1)
       this.setState({
         ...this.state,
         filteredEmployees: sortedEmployees,
@@ -49,8 +54,8 @@ class SearchResultContainer extends Component {
       })
     } else {
       const sortedEmployees = this.state.employees.sort((a, b) =>
-        (a.location.city < b.location.city) ? 1 :
-        (a.location.city === b.location.city) ? ((a.location.state < b.location.state) ? 1 : -1) : -1)
+        (a.location.state > b.location.state) ? 1 :
+        (a.location.state === b.location.state) ? ((a.location.city > b.location.city) ? 1 : -1) : -1)
       this.setState({
         ...this.state,
         filteredEmployees: sortedEmployees,
@@ -60,8 +65,8 @@ class SearchResultContainer extends Component {
 
   }
 
-
-  youngest(a, b) {
+// function to sort youngest to oldest by comparing parameters
+  youngest = (a, b) => {
     const aAge = a.dob.age;
     const bAge = b.dob.age;
 
@@ -73,7 +78,8 @@ class SearchResultContainer extends Component {
     }
     return comparison
   }
-  oldest (a,b){
+// function to sort oldest to youngest by comparing parameters
+  oldest = (a,b) => {
     const aAge = a.dob.age;
     const bAge = b.dob.age;
 
