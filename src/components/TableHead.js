@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Table({sortByName, sortByCity}) {
+export default function Table({sortByName, sortByCity, sortByAge}) {
     return (
           <thead>
             <tr>
@@ -9,7 +9,7 @@ export default function Table({sortByName, sortByCity}) {
             <th><button onClick={sortByCity}>City</button></th>
             <th><button>Phone Number</button></th>
             <th><button>Email</button></th>
-            <th><button>DOB</button></th>
+            <th><button onClick={sortByAge}>DOB</button></th>
             </tr>
           </thead>
     )

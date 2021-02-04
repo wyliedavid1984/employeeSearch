@@ -21,7 +21,7 @@ class SearchResultContainer extends Component {
         filteredEmployees: sortedEmployees,
         toggleName: true 
     })
-  } else if(this.state.toggleName){
+  } else{
       const sortedEmployees = this.state.employees.sort((a, b) => 
       (a.name.last > b.name.last) ? 1 :
       (a.name.last === b.name.last) ? ((a.name.first < b.name.first) ? 1:-1) : -1)
@@ -38,16 +38,16 @@ class SearchResultContainer extends Component {
     if (!this.state.toggleCity) {
       const sortedEmployees = this.state.employees.sort((a, b) =>
         (a.location.city > b.location.city) ? 1 :
-        (a.location.city === b.location.city) ? ((a.location.city > b.location.city) ? 1 : -1) : -1)
+        (a.location.city === b.location.city) ? ((a.location.state > b.location.state) ? 1 : -1) : -1)
       this.setState({
         ...this.state,
         filteredEmployees: sortedEmployees,
         toggleCity: true
       })
-    } else if (this.state.toggleCity) {
+    } else {
       const sortedEmployees = this.state.employees.sort((a, b) =>
-        (a.location.city > b.location.city) ? 1 :
-        (a.location.city === b.location.city) ? ((a.location.city < b.location.city) ? 1 : -1) : -1)
+        (a.location.city < b.location.city) ? 1 :
+        (a.location.city === b.location.city) ? ((a.location.state < b.location.state) ? 1 : -1) : -1)
       this.setState({
         ...this.state,
         filteredEmployees: sortedEmployees,
@@ -58,26 +58,51 @@ class SearchResultContainer extends Component {
   }
 
 
-//  compareEmployee(a, b) {
-//    const aLast = a.name.last.toLowerCase();
-//    const bLast = b.name.last.toLowerCase();
+  youngest(a, b) {
+    const aAge = a.dob.age;
+    const bAge = b.dob.age;
 
-//    let comparison = 0;
-//    if (aLast > bLast) {
-//      comparison = 1;
-//    } else if (aLast < bLast) {
-//      comparison = -1;
-//    }
-//    return comparison
-//  }
+    let comparison = 0;
+    if (aAge > bAge) {
+      comparison = 1;
+    } else if (aAge < bAge) {
+      comparison = -1;
+    }
+    return comparison
+  }
+  oldest (a,b){
+    const aAge = a.dob.age;
+    const bAge = b.dob.age;
 
-//  sortByName(){
-//    console.log(this.state.employees)
-//    let sortedEmployeeList = this.state.employees.sort(this.compareEmployee)
-//    console.log(sortedEmployeeList)
-//    return sortedEmployeeList;
-//  }
- 
+    let comparison = 0;
+    if (aAge < bAge) {
+      comparison = 1;
+    } else if (aAge > bAge) {
+      comparison = -1;
+    }
+    return comparison
+  }
+
+  sortByAge = () => {
+    if(!this.state.sortedYoungest){
+      let sortedEmployeeList = this.state.employees.sort(this.youngest)
+      console.log(sortedEmployeeList)
+      this.setState({
+        ...this.state,
+        filteredEmployees: sortedEmployeeList,
+        sortedYoungest: true
+      })
+    }else{
+      let sortedEmployeeList = this.state.employees.sort(this.oldest)
+      console.log(sortedEmployeeList)
+      this.setState({
+        ...this.state,
+        filteredEmployees: sortedEmployeeList,
+        sortedYoungest: false
+      })
+    }
+  }
+
   componentDidMount(){
     API.getEmployee()
       .then(results =>{
@@ -122,6 +147,7 @@ class SearchResultContainer extends Component {
           <TableHead 
           sortByName={this.sortByName}
           sortByCity={this.sortByCity}
+          sortByAge={this.sortByAge}
           />
           <tbody> 
             <EmployeeCard 
