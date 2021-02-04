@@ -12,13 +12,7 @@ As a user, I want to be able to view my entire employee directory at once so tha
 
 ## Description 
 
-It is a progressive web application. It can be used in a offline environment or online.
-
-This project is a fullstack application that tracks the users money. The application uses node.js, express, MongoDB and mongoose. It also makes use of indexedDB to store things while offline. To add in functionality while off line it makes use of service worker application and manifest to apply offline native app look.  
-
-GIVEN a user is on Budget App without an internet connection
-WHEN the user inputs a withdrawal or deposit
-THEN that will be shown on the page, and added to their transaction history when their connection is back online.
+Project 19 tasked the student with building out an employee tracker using React as the main library with the functionality to search for employees by name as well as order the list by one data type. As this assignment was given with very vague instructions. You are able to search by name. You can also sort out the columns by clicking on the heading. The Name, City, and DOB all with sort first by ascending and then descending.
 
 ### Table Of Contents
 
@@ -41,59 +35,33 @@ THEN that will be shown on the page, and added to their transaction history when
 
 ## Javascript
 
-Javascript was use to make most of the program between nodeJS and jQuery. A part of the front end functionality was provided. We added in a service worker and also a manifest for native app purposes. In order for the data to persist after coming back on line we also introduce indexedDB which is a local database storage. In using this we are able to store the offline data and then insert it in the cloud database storage when the application comes back online.
+add here
 
-### Mongodb
+## React
 
-This was the application that we use to store our data, it is a noSql data base. It uses BSON objects when storing data or Binary Javascript Object Notation. When working locally, the robo app help us to see the data base and what was been stored in the collections as well as the break down of the object being stored.
-
-### JQuery
-
-I used jquery to help grab the data that the user input. It also gets other elements on the page, so that they can be manipulated. Each function that created has a corresponding route on the backend to help with the manipulation of the data being selected by the jQuery.
-
-### Node
-
-I used node to initialize package.json. After the initialization, I added mongoose, morgan, and express.  Also used node to make a connection with the data base.  We also use it to spin up a server instance. 
+add here
 
 ### NPM
 
-I used npm to install the following dependencies mongoose, morgan, compression, and express. 
+I used npm to install the following dependencies react, gh-pages, bootstrap, axios. 
 
-#### **Mongoose**
+#### **axios**
 
-I used this to query data from our mongo data base. I also used it to create a schema. 
-
-#### **Express**
-
-Express made coding this application much easier. I made use of the express function through a variable named route.  It helped to reduce the amount of code needed to make requests and responses.  I built routes and stored them in the routes files. I used the express router function to make it easier to set up the requests. 
-
-#### **Morgan**
-
-Morgan was just used for our terminal to add a little color and make the readability of the back end console log just a little easier to read
-
-#### **Compression**
-
-Compression helped with compressing down bigger js files.  It takes all the code and help to minify it.
+I used axios to make api get request to access data from the random user api.
 
 ## HTML
 
-This was provided to us, there were three html pages. Just used HTML5 and also used cdn of "charts" to help display the data on the stats page
+With React there was only the need of a single index page. The app actually works as a single page so there wasn't a need for more than on display.
 
 ## CSS
 
-This was provided for us. It was use to position and style some of the html layouts.
+I used a mix of bootstrap classes as well as react ability to style in each component.
 
 </details>
 
 ## Usages
 
-AS AN avid traveller, I WANT to be able to track my withdrawals and deposits with or without a data/internet connection. SO THAT my account balance is accurate when I am traveling.
-
-## Installation Instructions
-
-This app is deployed. If you do want to add it locally. After forking and cloning the repository, you'll just need to run the following code:
-
-    npm i
+As a boss or an hr personnel I want to easily access personnel's data. I can search by name or alphabetize certain column as well as sort by age.
 
 ### Visuals
 
@@ -114,16 +82,13 @@ Click on the gif to be linked to the video
 
 ## Credits
 
-* [MongoDB](https://docs.mongodb.com/manual/tutorial/query-documents/)
 * [npm Documents](https://www.npmjs.com/)
-* [Express.js](https://expressjs.com/)
-* [Mongoose](https://mongoosejs.com/docs/api)
 * [Stack Overflow](https://stackoverflow.com/)
 * [W3Schools](https://www.w3schools.com/sql/default.asp)
-* [Vault photo](https://www.vectorstock.com/royalty-free-vector/bank-vault-background-with-money-gold-vector-20834249)
-* [Google tutorial](https://developers.google.com/web/ilt/pwa/introduction-to-service-worker-slides)
-* [Icon maker](https://makeappicon.com/download/c15e4bd2493f458791e2c13cb3c61044)
-* [Icon origin-Pinterest](https://www.pinterest.com/pin/333547916153293823/)
+* [React Documents](https://reactjs.org/docs/getting-started.html)
+* [MDN web docs](https://developer.mozilla.org/en-us/docs/Web/JavaScript/Reference/Global_Objects/Array/@@unscopables)
+* [Random User API](https://randomuser.me/)
+
 ## License
 
 MIT License
