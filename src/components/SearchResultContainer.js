@@ -11,11 +11,31 @@ class SearchResultContainer extends Component {
     filteredEmployees: [],
   };
 
-  sortByNameAsc(){
-    const sortedEmployees = this.state.employees.sort((a, b) => (a.name.last> b.name.last) ? 
-    1 : (a.name.last === b.name.last) ? ((a.name.first > b.name.first) ? 1:-1) : -1)
-    console.log(sortedEmployees)
+  sortByName = () =>{
+    if(!this.state.toggleName){
+      const sortedEmployees = this.state.employees.sort((a, b) => 
+      (a.name.last> b.name.last) ? 1 :
+      (a.name.last === b.name.last) ? ((a.name.first > b.name.first) ? 1:-1) : -1)
+      this.setState({
+        ...this.state,
+        filteredEmployees: sortedEmployees,
+        toggleName: true 
+    })
+  } else if(this.state.toggleName){
+      const sortedEmployees = this.state.employees.sort((a, b) => 
+      (a.name.last > b.name.last) ? 1 :
+      (a.name.last === b.name.last) ? ((a.name.first < b.name.first) ? 1:-1) : -1)
+      this.setState({
+        ...this.state,
+        filteredEmployees: sortedEmployees,
+        toggleName: false 
+      })
+    }
+
   }
+
+
+
 
 //  compareEmployee(a, b) {
 //    const aLast = a.name.last.toLowerCase();
@@ -79,7 +99,8 @@ class SearchResultContainer extends Component {
         {this.state.employees ?(
         <table className = "table" >
           <TableHead 
-          sortByNameAsc={this.sortByNameAsc}
+          sortByName={this.sortByName}
+          sortByCity={this.sortByCity}
           />
           <tbody> 
             <EmployeeCard 
