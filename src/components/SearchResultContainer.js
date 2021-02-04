@@ -34,7 +34,28 @@ class SearchResultContainer extends Component {
 
   }
 
+  sortByCity = () => {
+    if (!this.state.toggleCity) {
+      const sortedEmployees = this.state.employees.sort((a, b) =>
+        (a.location.city > b.location.city) ? 1 :
+        (a.location.city === b.location.city) ? ((a.location.city > b.location.city) ? 1 : -1) : -1)
+      this.setState({
+        ...this.state,
+        filteredEmployees: sortedEmployees,
+        toggleCity: true
+      })
+    } else if (this.state.toggleCity) {
+      const sortedEmployees = this.state.employees.sort((a, b) =>
+        (a.location.city > b.location.city) ? 1 :
+        (a.location.city === b.location.city) ? ((a.location.city < b.location.city) ? 1 : -1) : -1)
+      this.setState({
+        ...this.state,
+        filteredEmployees: sortedEmployees,
+        toggleCity: false
+      })
+    }
 
+  }
 
 
 //  compareEmployee(a, b) {
