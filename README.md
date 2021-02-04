@@ -35,11 +35,11 @@ Project 19 tasked the student with building out an employee tracker using React 
 
 ## Javascript
 
-add here
+Javascript was used to put everything together. We implemented the npm react. It allowed us to make a single page application. I made use of a lot of array methods in this particular app. I used both the sort and filter method to help with how the table data is display on the screen.  I used the map method to create dynamic elements.
 
 ## React
 
-add here
+React did a lot of heavy lifting for this application. The whole application was created using react. We start off with the index page that is where we start with our connections to a div in the index.html. The rest of how our application looks relies on App.js. The script files that start with a capital letter are called components. They This is how we add content dynamically. We import different components to display the page. Depending on what is occurring on the page different things will display. There are event listeners, onChange, onClick, onSubmit and each on can be programmed to do different things. I make uses of onChange and onClick so while you type in the input search field the displayed rows will filter out names matching the letters. Or if you click on the table head buttons they will sort by ascending and descending. We also make use of states to help gather data and set data. States for this particular app are only used on class instances and we pass those states along to their children elements. 
 
 ### NPM
 
