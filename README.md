@@ -61,21 +61,18 @@ I used a mix of bootstrap classes as well as react ability to style in each comp
 
 ## Usages
 
-As a boss or an hr personnel I want to easily access personnel's data. I can search by name or alphabetize certain column as well as sort by age.
+As a boss or a HR personnel I want to easily access personnel's data. I can search by name or alphabetize certain column as well as sort by age.
 
 ### Visuals
 
 <details>
 <summary>Screen Shots and Gif with Video link</summary>
 
-![Before Data](./public/assets/img/beforeData.png)
-
-![With Data](./public/assets/img/withData.png)
-
-
 Click on the gif to be linked to the video
 
-[![Gif of video](./public/assets/img/budget.gif)](https://drive.google.com/file/d/12Aggf5kWRxrdSZCopDG7waL74Cc5FT8E/view)
+![Initial Load Image](./public/pic.gif)
+
+[![Gif of video](./public/EmployeeSearchEngine.gif)](https://drive.google.com/file/d/127iLex5PZGYRZ1mqpOfqtUMNHi7a_KaJ/view)
 
 
 </details>
