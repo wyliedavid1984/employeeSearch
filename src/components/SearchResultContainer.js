@@ -9,6 +9,9 @@ class SearchResultContainer extends Component {
     search: "",
     employees: [],
     filteredEmployees: [],
+    toggleName: false,
+    toggleCity: false,
+    sortedYoungest: false
   };
 
   sortByName = () =>{
