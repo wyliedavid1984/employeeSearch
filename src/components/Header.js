@@ -5,7 +5,8 @@ const styles = {
         background: "navy",
         color: "white",
         display: "block",
-        marginBottom: "0px"
+        marginBottom: "0px",
+        width: "100%" 
     },
     h1: {
         textAlign: "center"

@@ -4,11 +4,11 @@ export default function Table({sortByName, sortByCity, sortByAge}) {
     return (
           <thead>
             <tr>
-            <th><button>Photo</button></th>
+            <th>Photo</th>
             <th><button onClick={sortByName}>Name</button></th>
             <th><button onClick={sortByCity}>City</button></th>
-            <th><button>Phone Number</button></th>
-            <th><button>Email</button></th>
+            <th>Phone Number</th>
+            <th>Email</th>
             <th><button onClick={sortByAge}>DOB</button></th>
             </tr>
           </thead>

@@ -1,4 +1,5 @@
 import React from 'react'
+import "./employeeCard.css"
 
 function EmployeeCard({filteredEmployees, employees, search}) {
   let employeeCards = [];
@@ -9,8 +10,8 @@ function EmployeeCard({filteredEmployees, employees, search}) {
         <td><img alt={employee.name} className="img-fluid" src={employee.picture.thumbnail} /></td>
         <td>{employee.name.first} {employee.name.last}</td>
         <td>{employee.location.city}</td>
-        <td>{employee.phone}</td>
-        <td>{employee.email}</td>
+        <td className="employeeCard">{employee.phone}</td>
+        <td className="employeeCard">{employee.email}</td>
         <td>{employee.dob.date}</td>
       </tr>
     )

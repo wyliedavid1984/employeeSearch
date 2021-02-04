@@ -4,11 +4,8 @@ const styles = {
   inputDiv:{
     display: "flex",
     justifyContent: "center",
+    marginTop: "10px"
   },
-  searchButton:{
-    display: "flex",
-    justifyContent: "center"
-  }
   
 }
 
